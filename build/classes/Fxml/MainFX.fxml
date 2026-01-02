@@ -52,6 +52,16 @@
                   <Insets left="10.0" top="5.0" />
                </VBox.margin>
             </Button>
+            <Label id="Label" fx:id="imagesSelected" layoutX="10.0" layoutY="10.0" stylesheets="@../Style/mainfx.css" text="No Image Selected" textFill="#1e1e1e">
+               <VBox.margin>
+                  <Insets left="10.0" top="50.0" />
+               </VBox.margin>
+            </Label>
+            <Button layoutX="20.0" layoutY="173.0" mnemonicParsing="false" onAction="#clearAll" prefHeight="29.0" prefWidth="113.0" styleClass="handleButton" text="Clear All">
+               <VBox.margin>
+                  <Insets left="10.0" top="5.0" />
+               </VBox.margin>
+            </Button>
          </children>
          <BorderPane.margin>
             <Insets />
