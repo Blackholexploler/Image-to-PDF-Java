@@ -8,21 +8,30 @@ package Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.control.Label;
 import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import src.PDFMaker;
+import src.customAlert;
+
 
 
 public class Controller {
+    
+    customAlert customAlert = new customAlert();
+    
 
     @FXML
     private BorderPane rootPanel;
     
     @FXML
     private TextField pdfPathTF;
+    
+    @FXML
+    private Label imagesSelected;
 
     List<File> imagesFile;
     
@@ -44,6 +53,9 @@ public class Controller {
             return;
         }
         
+        imagesSelected.setText(imagesFile.size() + " Selected");
+        
+        
         //Get Image File Path
         for (File f : imagesFile)
             System.out.println(f.getAbsoluteFile());
@@ -58,6 +70,11 @@ public class Controller {
         
         //Set Title
         pdfChooser.setTitle("Select the File Name and Path to Save to");
+        
+        //set Type to PDF
+        FileChooser.ExtensionFilter setExtPdf = new FileChooser.ExtensionFilter("*.pdf", "*.pdf");
+        pdfChooser.getExtensionFilters().add(setExtPdf);
+
         
         //Open Explorer for Choosing Path
         File pdfFile = pdfChooser.showSaveDialog(rootPanel.getScene().getWindow());
@@ -79,6 +96,7 @@ public class Controller {
         //Confirm if Images and Path are Null
         if (imagesFile == null || pdfPathTF.getText().equals("")) {
             System.out.println("Invalid Input");
+            customAlert.showCustomStage();
             return; 
         }
         
@@ -92,5 +110,14 @@ public class Controller {
             e.printStackTrace();
         } 
     }
-   
+    
+    @FXML
+    
+    private void clearAll(){
+        imagesFile = null;
+        pdfPathTF.setText("");
+        imagesSelected.setText("No Images Selected");
+        return;
+    }
+    
 }

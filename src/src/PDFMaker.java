@@ -47,9 +47,10 @@ public class PDFMaker {
             float imageWidth = image.getWidth();
             float imageHeight = image.getHeight();
 
-            float scale = Math.min(pageWidth / imageWidth, pageHeight / imageHeight);
+            float scale = Math.max(pageWidth / imageWidth, pageHeight / imageHeight);
             float scaledWidth = imageWidth * scale;
             float scaledHeight = imageHeight * scale;
+            
 
             float x = (pageWidth - scaledWidth) / 2;
             float y = (pageHeight - scaledHeight) / 2;
